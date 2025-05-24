@@ -14,6 +14,7 @@ check_root
 
 # logfile folder setup
 logfile_setup
+
 # Application setup
 app_setup
 

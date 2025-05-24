@@ -6,7 +6,7 @@
 source ./common_script.sh
 
 #assiging server for installation
-service_name="mongodb"
+service_name="rabbitMQ"
 
 # Color codes
 color
