@@ -20,6 +20,5 @@ app_setup
 # Node.js setup
 nodejs_setup
 
-
 # Systemd Service setup
 systemd_setup

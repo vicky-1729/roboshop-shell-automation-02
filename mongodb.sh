@@ -1,46 +1,19 @@
 #!/bin/bash
 
-# Exit on any error
-set -e
+#importing the function varabiles and all other stuff
+source ./common_script.sh
+
+#assiging server for installation
+service_name="mongodb"
 
 # Color codes
-r="\033[31m"   # Red
-g="\033[32m"   # Green
-y="\033[33m"   # Yellow
-b="\033[34m"   # Blue
-m="\033[35m"   # Magenta
-reset="\033[0m"  # Reset
+color
 
+# Root privilege check
+check_root
 
-# Variables
-USERID=$(id -u)
-LOGS_FOLDER="/var/log/roboshop-logs"
-SCRIPT_NAME=$(echo "$0" | cut -d '.' -f1)
-LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-S_DIR=$PWD
-
-# Create log directory if it doesn't exist
-mkdir -p $LOGS_FOLDER
-
-# Check for root privileges
-if [ $USERID -ne 0 ]; then
-    echo -e "${r}ERROR:: Please run this script with root access${reset}"
-    exit 1
-fi
-
-
-# Validation function
-VALIDATE() {
-    if [ $1 -eq 0 ]; then
-        echo -e "$2 ... ${g}SUCCESS${reset}" | tee -a $LOG_FILE
-    else
-        echo -e "$2 ... ${r}FAILURE${reset}" | tee -a $LOG_FILE
-        exit 1
-    fi
-}
-
-# Set script directory
-S_DIR=$(dirname "$0")
+# logfile folder setup
+logfile_setup
 
 # MongoDB setup
 cp $S_DIR/repo_config/mongo.repo /etc/yum.repos.d/mongodb.repo &>> $LOG_FILE
