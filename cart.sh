@@ -15,9 +15,6 @@ check_root
 # logfile folder setup
 logfile_setup
 
-# Validation function
-VALIDATE
-
 # Node.js setup
 nodejs_setup
 
