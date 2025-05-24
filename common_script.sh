@@ -97,4 +97,16 @@ VALIDATE $? "Installing Node.js dependencies"
 
 }
 
+# maven installation function 
+maven_setup(){
+    dnf install maven -y &>> "$LOG_FILE"
+    VALIDATE $? "installation of maven"
+    
+    mvn clean package &>> "$LOG_FILE"
+    VALIDATE $? "mvn package cleaning"
+
+    mv target/shipping-1.0.jar shipping.jar  &>> "$LOG_FILE"
+    VALIDATE $? "moving of shipping of jar"
+
+}
 
