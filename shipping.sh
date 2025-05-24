@@ -43,7 +43,5 @@ else
 fi
 
 
-
-
 systemctl restart shipping
 VALIDATE $? "restarting shipping service"

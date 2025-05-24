@@ -101,7 +101,7 @@ VALIDATE $? "Installing Node.js dependencies"
 maven_setup(){
     dnf install maven -y &>> "$LOG_FILE"
     VALIDATE $? "installation of maven"
-    
+
     mvn clean package &>> "$LOG_FILE"
     VALIDATE $? "mvn package cleaning"
 
@@ -110,3 +110,13 @@ maven_setup(){
 
 }
 
+# python installation setup
+python_setup(){
+
+dnf install python3 gcc python3-devel -y &>> "$LOG_FILE"
+VALIDATE $? "installing python "
+
+pip3 install -r requirements.txt &>> "$LOG_FILE" 
+VALIDATE $? "installing python requriement"
+
+}
