@@ -1,15 +1,11 @@
 #!/bin/bash
 
-# Exit on any error
-set -e
+#taking code from the common.sh
+source ./common_script.sh
 
-# Color codes
-r="\033[31m"   # Red
-g="\033[32m"   # Green
-y="\033[33m"   # Yellow
-b="\033[34m"   # Blue
-m="\033[35m"   # Magenta
-reset="\033[0m"  # Reset
+#calling color function
+color
+
 
 # Variables
 USERID=$(id -u)
