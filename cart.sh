@@ -14,12 +14,12 @@ check_root
 
 # logfile folder setup
 logfile_setup
+# Application setup
+app_setup
 
 # Node.js setup
 nodejs_setup
 
-# Application setup
-app_setup
 
 # Systemd Service setup
 systemd_setup
