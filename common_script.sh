@@ -31,6 +31,16 @@ LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
 S_DIR=$PWD
 }
 
+# Validation function setup
+VALIDATE() {
+    if [ "$1" -eq 0 ]; then
+        echo -e "$2 ... ${g}SUCCESS${reset}" | tee -a "$LOG_FILE"
+    else
+        echo -e "$2 ... ${r}FAILURE${reset}" | tee -a "$LOG_FILE"
+        exit 1
+    fi
+}
+
 
 # Application setup funtion
 app_setup()
@@ -86,14 +96,4 @@ VALIDATE $? "Enabling $service_name service"
 systemctl start $service_name &>> "$LOG_FILE"
 VALIDATE $? "Starting $service_name service"
 
-}
-
-# Validation function setup
-VALIDATE() {
-    if [ "$1" -eq 0 ]; then
-        echo -e "$2 ... ${g}SUCCESS${reset}" | tee -a "$LOG_FILE"
-    else
-        echo -e "$2 ... ${r}FAILURE${reset}" | tee -a "$LOG_FILE"
-        exit 1
-    fi
 }
