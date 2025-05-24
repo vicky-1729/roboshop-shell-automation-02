@@ -65,6 +65,21 @@ unzip /tmp/$service_name.zip &>> "$LOG_FILE"
 VALIDATE $? "Unzipping $service_name.zip"
 
 }
+# systemd service function
+systemd_setup(){
+cp $S_DIR/service/$service_name.service /etc/systemd/system/$service_name.service &>> "$LOG_FILE"
+VALIDATE $? "Copying $service_name service file"
+
+systemctl daemon-reload &>> "$LOG_FILE"
+VALIDATE $? "Reloading system"
+
+systemctl enable $service_name &>> "$LOG_FILE"
+VALIDATE $? "Enabling $service_name service"
+
+systemctl start $service_name &>> "$LOG_FILE"
+VALIDATE $? "Starting $service_name service"
+
+}
 
 # nodejs installation function 
 nodejs_setup(){
@@ -82,18 +97,4 @@ VALIDATE $? "Installing Node.js dependencies"
 
 }
 
-# systemd service function
-systemd_setup(){
-cp $S_DIR/service/$service_name.service /etc/systemd/system/$service_name.service &>> "$LOG_FILE"
-VALIDATE $? "Copying $service_name service file"
 
-systemctl daemon-reload &>> "$LOG_FILE"
-VALIDATE $? "Reloading system"
-
-systemctl enable $service_name &>> "$LOG_FILE"
-VALIDATE $? "Enabling $service_name service"
-
-systemctl start $service_name &>> "$LOG_FILE"
-VALIDATE $? "Starting $service_name service"
-
-}
